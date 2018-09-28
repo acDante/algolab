@@ -31,20 +31,40 @@ void testcase(){
     int time = 0;
     while(!s.empty()){
         int cur = s.top();
-        if(visited[cur]){
-            s.pop();
-            out[cur] = time;
-        }
-        else{
+        s.pop();
+        //std::cout << "visiting " << cur << std::endl;
+        if(!visited[cur]){
             visited[cur] = true;
             in[cur] = time;
-            for(int ni : neighbors[cur]){
-                if(!visited[ni]){
-                    s.push(ni);
-                }
+            time++;
+        }
+        // consider border case: 图里有环的情况!!!!!!
+        if(out[cur] != -1){
+            continue;
+        }
+
+        std::vector<int> children;
+        for(int ni : neighbors[cur]){
+            if(!visited[ni]){
+                children.push_back(ni);
             }
         }
-        time++;
+
+        if(children.empty()){
+            out[cur] = time;
+            //std::cout << "exiting " << cur << std::endl;
+            time++;
+        }
+        else{
+            s.push(cur);
+            for(int ci : children){
+                s.push(ci);
+            }
+            children.clear();
+        }
+
+        // std::cout << "current top:=" << cur << std::endl;
+        // std::cout << "current time:=" << time << std::endl;        
     }
 
     print(in);
