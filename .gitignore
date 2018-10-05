@@ -1,4 +1,2 @@
-g++
-settings.json
-cpp_intro.zip
-intro_cpp_stl.pdf
+*.*
+!*.cpp
