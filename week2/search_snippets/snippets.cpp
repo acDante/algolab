@@ -1,4 +1,4 @@
-// some problems in memroy assignment ..?
+ // some problems in memroy assignment ..?
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -25,7 +25,7 @@ void testcase(){
     }
     std::sort(words.begin(), words.end());
 
-    std::vector<double> occur(n, 0);    // store occurrence time of each work
+    std::vector<double> occur(n, 0);    // store occurrence time of each word
     
     int i = 0, j = 0;
     int num_word = 1, min_length = INT32_MAX;
@@ -34,6 +34,7 @@ void testcase(){
     while(j < words.size()){
         if(num_word < n){
             j++;
+            if(j == words.size()) break;
             occur[words[j].second]++;
             if(occur[words[j].second] == 1){
                 num_word++;

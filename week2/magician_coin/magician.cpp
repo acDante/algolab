@@ -1,3 +1,8 @@
+/* Method: DP
+maxProb(i, j) = the maximal probability to reach money m at n-th day, if starting from i-th day, with money j
+maxProb(i, j) = max{ maxProb(i + 1, j + bi) * prob[i], maxProb(i + 1, j - bi) * (1 - prob[i]) }
+*/
+
 #include <iostream>
 #include <iomanip>
 #include <vector>
