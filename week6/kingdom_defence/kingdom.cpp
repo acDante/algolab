@@ -6,14 +6,8 @@
 #include <boost/graph/adjacency_list.hpp>
 #include <boost/graph/push_relabel_max_flow.hpp>
 #include <boost/graph/edmonds_karp_max_flow.hpp>
-// Namespaces
-// using namespace std;
-// using namespace boost;
-
 
 // BGL Graph definitions
-// =====================
-// Graph Type with nested interior edge properties for Flow Algorithms
 typedef	boost::adjacency_list_traits<boost::vecS, boost::vecS, boost::directedS> Traits;
 typedef boost::adjacency_list<boost::vecS, boost::vecS, boost::directedS, boost::no_property,
 	boost::property<boost::edge_capacity_t, long,

@@ -29,8 +29,8 @@ void testcase(){
     
     int i = 0, j = 0;
     int num_word = 1, min_length = INT32_MAX;
-    occur[words[0].second] = 1;
-
+    occur[words[0].second] = 1;　
+    
     while(j < words.size()){
         if(num_word < n){
             j++;

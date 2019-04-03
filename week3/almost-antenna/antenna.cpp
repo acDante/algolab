@@ -35,23 +35,29 @@ void testcase(int n){
     Traits::Circle c = mc.circle();
     K::FT minSquared = c.squared_radius();
 
-    for(int i = 0; i < mc.number_of_support_points(); ++i){
-        // 去掉某一个support point 然后用余下的点算min circle
-        K::Point_2 sp = mc.support_point(i);
-        std::vector<K::Point_2>::iterator itr;
-        itr = std::find(pts.begin(), pts.end(), sp);
-        if(itr != pts.end()){
-            std::swap(pts[0], *itr);
-            Min_circle new_mc(pts.begin() + 1, pts.end(), true);
-            Traits::Circle new_c = new_mc.circle();
-            K::FT squared = new_c.squared_radius();
-            if(squared < minSquared){
-                minSquared = squared;
-            }
-            std::swap(pts[0], *itr);
-        }
+    if(mc.number_of_support_points() >= 4){
+        std::cout << ceil_to_double(CGAL::sqrt(minSquared)) << std::endl;
+        return;
     }
-    std::cout << ceil_to_double(CGAL::sqrt(minSquared)) << std::endl;
+    else{
+        for(int i = 0; i < mc.number_of_support_points(); ++i){
+            // 去掉某一个support point 然后用余下的点算min circle
+            K::Point_2 sp = mc.support_point(i);
+            std::vector<K::Point_2>::iterator itr;
+            itr = std::find(pts.begin(), pts.end(), sp);
+            if(itr != pts.end()){
+                std::swap(pts[0], *itr);
+                Min_circle new_mc(pts.begin() + 1, pts.end(), true);
+                Traits::Circle new_c = new_mc.circle();
+                K::FT squared = new_c.squared_radius();
+                if(squared < minSquared){
+                    minSquared = squared;
+                }
+                std::swap(pts[0], *itr);
+            }
+        }   
+        std::cout << ceil_to_double(CGAL::sqrt(minSquared)) << std::endl;
+    }
 }
 
 int main(){
